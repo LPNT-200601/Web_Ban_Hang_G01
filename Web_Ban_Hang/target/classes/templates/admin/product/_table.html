@@ -1,0 +1,33 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table class="table">
+        <thead>
+            <tr class="table-info">
+                <th>No.</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Product Date</th>
+                <th>Special?</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="itm, st : ${page.content}">
+                <td th:text="${st.count}"></td>
+                <td th:text="${itm.id}"></td>
+                <td th:text="${itm.name}"></td>
+                <td th:text="${itm.unitPrice}"></td>
+                <td th:text="${itm.quantity}"></td>
+                <td th:text="${itm.discount}"></td>
+                <td th:text="${itm.productDate}"></td>
+                <td th:text="${itm.special? 'Yes': 'No'}"></td>
+                <td>
+                    <hr th:replace="/admin/shared/frags :: btn-rd('product', ${itm.id})">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr th:replace="/admin/product/_pager">
+</div>

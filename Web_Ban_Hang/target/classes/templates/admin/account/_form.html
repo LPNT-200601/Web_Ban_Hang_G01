@@ -1,0 +1,28 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <form th:object="${item}" method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <div class="col-4">
+                <label>Username</label>
+                <input th:field="*{username}" class="form-control">
+            </div>
+
+            <div class="col-4">
+                <label>Password</label>
+                <input th:field="*{password}" type="password" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Fullname</label>
+                <input th:field="*{fullname}" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Photo</label>
+                <input type="file" name="image_file" class="form-control">
+                <input th:field="*{photo}" type="hidden">
+            </div>
+        </div>
+        
+        <div class="mb-3">
+        	<hr th:replace="/admin/shared/frags :: btn-crud('account', *{username})">
+        </div>
+    </form>
+</div>

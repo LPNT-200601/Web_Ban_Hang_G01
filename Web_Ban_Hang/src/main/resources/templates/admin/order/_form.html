@@ -1,0 +1,49 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <form th:object="${item}" method="post">
+        <div class="mt-3">
+            <label>Id</label>
+            <input th:field="*{id}" class="form-control bg-secondary" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label>Order Status</label>
+            <select th:field="*{status.id}" class="form-select">
+                <th:block th:each="s : ${statuses}">
+                    <option th:value="${s.id}" th:text="${s.name}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="mb-3">
+            <div>ORDER DETAILS</div>
+            <table class="table">
+                <thead>
+                    <tr class="table-info">
+                        <th>No.</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Unit Price</th>
+                        <th>Discount</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="itm, st : ${item.orderDetails}">
+                        <td th:text="${st.count}"></td>
+                        <td th:text="${itm.product.id}"></td>
+                        <td th:text="${itm.product.name}"></td>
+                        <td th:text="@{|$${#numbers.formatDecimal(itm.unitPrice, 0, 2)}|}"></td>
+                        <td th:text="@{|${itm.discount *100}%|}"></td>
+                        <td th:text="${itm.quantity}"></td>
+                        <td th:text="@{|$${#numbers.formatDecimal(itm.unitPrice*itm.quantity*(1-itm.discount), 0, 2)}|}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="mb-3">
+    <hr th:replace="/admin/shared/frags :: btn-crud('order', *{id})">
+</div>
+</form>
+</div>

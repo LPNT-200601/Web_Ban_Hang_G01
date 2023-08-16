@@ -1,0 +1,24 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table class="table">
+        <thead>
+            <tr class="table-info">
+                <th>No.</th>
+                <th>Usernam</th>
+                <th>Fullname</th>
+                <th>Mobile</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="itm, st : ${items}">
+                <td th:text="${st.count}"></td>
+                <td th:text="${itm.username}"></td>
+                <td th:text="${itm.fullname}"></td>
+                 <td th:text="${itm.mobile}"></td>
+                <td>
+                    <hr th:replace="/admin/shared/frags :: btn-rd('account', ${itm.username})">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
